@@ -14,3 +14,17 @@ makerspace = bs4.BeautifulSoup(res.text, features="lxml")
 
 makerspace_elems = makerspace.findAll("div", {"class": "TerminCol TerminColPlaces"})
 print(makerspace_elems[0].getText(), makerspace_elems[1].getText())
+
+#Setting up SMTP
+import smtplib
+smtpObj = smtplib.SMTP("smtp.gmail.com", 587)
+smtpObj.ehlo()
+smtpObj.starttls()
+smtpObj.login("my_email_address@gmail.com", "MY_SECRET_PASSWORD")
+
+#Sending an Email
+smtpObj.sendmail("my_email_address@gmail.com", "recipient@example.com", "Subject: S long. /nDear Alice, so long and thanks for all the fish. Sincerely, Bob")
+
+#Disconnect program from the SMTP server
+smtpObj.quit()
+
