@@ -20,11 +20,10 @@ import smtplib
 smtpObj = smtplib.SMTP("smtp.gmail.com", 587)
 smtpObj.ehlo()
 smtpObj.starttls()
-smtpObj.login("my_email_address@gmail.com", "MY_SECRET_PASSWORD")
+smtpObj.login("d.degregorio95@gmail.com", "pyvmoz-qudmA1-taggem")
 
 #Sending an Email
-smtpObj.sendmail("my_email_address@gmail.com", "recipient@example.com", "Subject: S long. /nDear Alice, so long and thanks for all the fish. Sincerely, Bob")
+smtpObj.sendmail("d.degregorio95@gmail.com", "d.degregorio95@gmail.com", "Subject: Number of available seats in the desired course. /nHello!\nYou wanna know the exact number of available seats in your desired course? Not a problem. There are still {} seats left. \nYours sincerely,\nDaniele".format(int(makerspace_elems[1].getText())))
 
 #Disconnect program from the SMTP server
 smtpObj.quit()
-
