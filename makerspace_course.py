@@ -19,16 +19,17 @@ def makerspace_places(course_website):
 	makerspace = bs4.BeautifulSoup(res.text, features="lxml")
 	# Once you have a BeautifulSoub object, you can use its methods to locate specific parts of an HTML document.
 	show_places = makerspace.findAll("div", {"class": "TerminCol TerminColPlaces"})
-	# print(show_places[0].getText(), show_places[1].getText())
+	# course_title = makerspace.select("html title")
+
 	# Connect to an SMTP Server
 	smtpObj = smtplib.SMTP("smtp.gmail.com", 587)
 	smtpObj.ehlo()
 	smtpObj.starttls()
-	smtpObj.login("d.degregorio95@gmail.com", "pyvmoz-qudmA1-taggem")
-	smtpObj.sendmail("d.degregorio95@gmail.com", "d.degregorio95@gmail.com", "Subject: Number of free slots in the desired course. \nHello!\nYou'd like to know the number of free slots in your Makerspace course of interest? Not a problem. There are still {} slots left. \nYours sincerely,\nDaniele".format(int(show_places[1].getText())))
-	smtpObj.quit()
+	smtpObj.login("my_email_address@gmail.com", "MY_SECRET_PASSWORD") 
+	smtpObj.sendmail("my_email_address@gmail.com", "recipient@gmail.com", "Subject: Number of free slots in the desired course. \nHello!\nYou'd like to know the number of free slots in your Makerspace course of interest? Not a problem. There are still {} slots left. \nYours sincerely,\nDaniele".format(int(show_places[1].getText()))) 
+	smtpObj.quit() 
 
-
+# Pass link of the course website as second parameter.
 schedule.every().hour.do(makerspace_places, "https://www.maker-space.de/course/cnc-fraesen-mit-der-haas-vf-2-fuer-einsteiger.html")
 
 while True:
